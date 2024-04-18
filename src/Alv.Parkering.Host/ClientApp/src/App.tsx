@@ -12,7 +12,7 @@ function App() {
           <h4>Legg til kode her</h4>
         </div>
         <ul className={styles.tasks}>
-          <li>TODO: Klingen har laget et API. Kan du vise parkeringsmulighetene? <a href="http://localhost:5000/parkingSpot">Sjekk ut responsen her. </a> Vis om det er handicap-plasser, ladeplasser og om det er gratis eller betalt parkering
+          <li>TODO: Klingen har laget et API. Kan du vise parkeringsmulighetene? <a href="http://localhost:5000/parkingSpot">Sjekk ut responsen her. </a> Vis om det er handicap-plasser, ladeplasser og om det er gratis eller betalt parkering. PS: Klingen har ikke enabla CORS på API'et ;)
           </li>
           <li>TODO: Vi vil bare ha parkeringene i nærheten av oss. Kan vi gjøre det slik at API'et tar inn longitude og latitude og gir oss parkeringer innenfor en 5km radius?</li>
           <li>TODO: Gjør det mulig å bare hente gratis parkeringer</li>

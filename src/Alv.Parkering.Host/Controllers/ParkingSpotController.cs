@@ -1,5 +1,6 @@
 using Alv.Parkering.Application.Interfaces;
-using Alv.Parkering.Domain.Models;
+using Alv.Parkering.Host.Extensions;
+using Alv.Parkering.Host.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Vite_CSharp.Controllers;
@@ -18,8 +19,9 @@ public class ParkingSpotController : ControllerBase
     }
 
     [HttpGet]
-    public Task<List<ParkingSpot>> Get([FromQuery] int page = 0, [FromQuery] int pageSize = 25)
+    public async Task<IEnumerable<ParkingSpotDto>> Get([FromQuery] int page = 0, [FromQuery] int pageSize = 25)
     {
-        return parkingStore.FetchParkingSpots(page, pageSize);
+        var parkingSpots = await parkingStore.FetchParkingSpots(page, pageSize);
+        return parkingSpots.Select(parkingSpot => parkingSpot.ToParkingSpotDto());
     }
 }
