@@ -1,0 +1,27 @@
+import logo from './logo.svg'
+import styles from './App.module.scss'
+import { RandomBanner } from './components/RandomBanner';
+import useGeolocation from './hooks/useGeolocation';
+function App() {
+
+  const { latitude, longitude} = useGeolocation();
+
+  return (
+    <div className="App">
+      <div className={styles.toolbar}><h3>Palvkering</h3><p><RandomBanner /></p></div>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <p>{latitude} {longitude}</p>
+        </div>
+        <ul className="tasks">
+          <li>TODO: Klingen har laget et API. Kan du vise parkeringsmulighetene? <a href="http://localhost:5000/parkingSpot">Sjekk ut responsen her. </a> Vis om det er handicap-plasser, ladeplasser og om det er gratis eller betalt parkering
+          </li>
+          <li>TODO: Vi vil bare ha parkeringene i nærheten av oss. Kan vi gjøre det slik at API'et tar inn longitude og latitude og gir oss parkeringer innenfor en 5km radius?</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+
+export default App

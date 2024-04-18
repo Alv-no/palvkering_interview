@@ -1,0 +1,35 @@
+.content {
+  min-height: calc(100vh - 130px);
+  color: white;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+   
+}
+
+.toolbar {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  text-transform: uppercase;
+  border-bottom-style: solid;
+  border-bottom-color: white;
+  border-width: 1px;
+  h3 {
+    font-size: 30px;
+    font-weight: 800;
+  }
+}
+
+.tasks {
+  width: 600px;
+  padding: 1rem;
+  li {
+    margin-top: 2rem;
+    font-size: 20px;
+  }
+}
