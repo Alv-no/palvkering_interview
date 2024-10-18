@@ -19,9 +19,19 @@ public class ParkingSpotController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<ParkingSpotDto>> Get([FromQuery] int page = 0, [FromQuery] int pageSize = 25)
+    public async Task<IEnumerable<ParkingSpotDto>> Get(
+        [FromQuery] int page = 0,
+        [FromQuery] int pageSize = 25
+    )
     {
         var parkingSpots = await parkingStore.FetchParkingSpots(page, pageSize);
+        return parkingSpots.Select(parkingSpot => parkingSpot.ToParkingSpotDto());
+    }
+
+    [HttpGet("all")]
+    public async Task<IEnumerable<ParkingSpotDto>> GetAll()
+    {
+        var parkingSpots = await parkingStore.FetchAllParkingSpots();
         return parkingSpots.Select(parkingSpot => parkingSpot.ToParkingSpotDto());
     }
 }
