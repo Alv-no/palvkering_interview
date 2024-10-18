@@ -14,16 +14,43 @@ public class ParkingSpotRepository : IParkingStore
         this.context = context;
     }
 
+    public Task<List<ParkingSpot>> FetchAllParkingSpots()
+    {
+        return context
+            .Parkeringers.Join(
+                context.Detailjers,
+                parkering => parkering.Id,
+                detalj => detalj.Id,
+                (parkering, detalj) =>
+                    new ParkingSpot(
+                        parkering.Adresse ?? "",
+                        detalj.AntallAvgiftsbelagtePlasser ?? 0,
+                        detalj.AntallLadeplasser ?? 0,
+                        detalj.AntallLadeplasser ?? 0,
+                        detalj.AntallForflytningshemmede ?? 0,
+                        detalj.VurderingForflytningshemmede ?? ""
+                    )
+            )
+            .ToListAsync();
+    }
+
     public Task<List<ParkingSpot>> FetchParkingSpots(int page, int pageSize)
     {
-        return context.Parkeringers
-            .Join(context.Detailjers, parkering => parkering.Id, detalj => detalj.Id, (parkering, detalj) => new ParkingSpot(
-                parkering.Adresse ?? "",
-                detalj.AntallAvgiftsbelagtePlasser ?? 0,
-                detalj.AntallLadeplasser?? 0,
-                detalj.AntallLadeplasser ?? 0,
-                detalj.AntallForflytningshemmede ?? 0,
-                detalj.VurderingForflytningshemmede ?? ""))
+        return context
+            .Parkeringers.Join(
+                context.Detailjers,
+                parkering => parkering.Id,
+                detalj => detalj.Id,
+                (parkering, detalj) =>
+                    new ParkingSpot(
+                        parkering.Adresse ?? "",
+                        detalj.AntallAvgiftsbelagtePlasser ?? 0,
+                        detalj.AntallLadeplasser ?? 0,
+                        detalj.AntallLadeplasser ?? 0,
+                        detalj.AntallForflytningshemmede ?? 0,
+                        detalj.VurderingForflytningshemmede ?? ""
+                    )
+            )
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
