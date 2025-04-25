@@ -7,6 +7,10 @@ cd src/Alv.Parkering.Host
 dotnet run
 ```
 
+```shell
+dotnet run --project src/Alv.Parkering.Host
+```
+
 
 ## Endepunkter
 
